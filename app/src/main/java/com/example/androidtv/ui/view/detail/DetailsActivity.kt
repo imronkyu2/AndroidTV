@@ -1,4 +1,4 @@
-package com.example.androidtv.ui.view
+package com.example.androidtv.ui.view.detail
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity

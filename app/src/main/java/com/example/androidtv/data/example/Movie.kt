@@ -1,4 +1,4 @@
-package com.example.androidtv.data
+package com.example.androidtv.data.example
 
 import java.io.Serializable
 

@@ -1,4 +1,4 @@
-package com.example.androidtv.ui.view
+package com.example.androidtv.ui.view.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,14 +14,13 @@ import androidx.core.content.ContextCompat
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.androidtv.R
 import com.example.androidtv.data.model.CategoryModel
 import com.example.androidtv.data.model.CouponModel
 import com.example.androidtv.ui.inject.InjectAndroidTv
 import com.example.androidtv.ui.util.StateUtil
+import com.example.androidtv.ui.view.BrowseErrorActivity
+import com.example.androidtv.ui.view.detail.DetailsActivity
 import com.google.gson.Gson
 import java.util.*
 
@@ -64,7 +63,6 @@ class MainFragment : BrowseSupportFragment() {
                 }
 
                 is StateUtil.Success -> {
-                    showToast(it.message)
                     Log.e("TAG", "setObserver coupon: SUCCESS ${it.message}")
                     setData(it.data)
                 }
@@ -126,11 +124,6 @@ class MainFragment : BrowseSupportFragment() {
         }
     }
 
-    private fun showToast(s: String) {
-        Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
-
-    }
-
     private fun getData() {
         viewModel.getCatagory()
     }
@@ -153,7 +146,7 @@ class MainFragment : BrowseSupportFragment() {
 
     @SuppressLint("UseRequireInsteadOfGet")
     private fun setupUIElements() {
-        title = getString(R.string.browse_title)
+        title = getString(R.string.coupon)
         // over title
         headersState = BrowseSupportFragment.HEADERS_ENABLED
         isHeadersTransitionOnBackEnabled = true
@@ -214,46 +207,11 @@ class MainFragment : BrowseSupportFragment() {
         ) {
             if (item is CouponModel) {
                 mBackgroundUri = item.couponBrandLogo
-                startBackgroundTimer()
             }
-        }
-    }
-
-    private fun updateBackground(uri: String?) {
-        val width = mMetrics.widthPixels
-        val height = mMetrics.heightPixels
-        Glide.with(requireActivity())
-            .load(uri)
-            .centerCrop()
-            .error(mDefaultBackground)
-            .into<SimpleTarget<Drawable>>(
-                object : SimpleTarget<Drawable>(width, height) {
-                    override fun onResourceReady(
-                        drawable: Drawable,
-                        transition: Transition<in Drawable>?
-                    ) {
-                        mBackgroundManager.drawable = drawable
-                    }
-                })
-        mBackgroundTimer?.cancel()
-    }
-
-    private fun startBackgroundTimer() {
-        mBackgroundTimer?.cancel()
-        mBackgroundTimer = Timer()
-        mBackgroundTimer?.schedule(UpdateBackgroundTask(), BACKGROUND_UPDATE_DELAY.toLong())
-    }
-
-    private inner class UpdateBackgroundTask : TimerTask() {
-
-        override fun run() {
-            mHandler.post { updateBackground(mBackgroundUri) }
         }
     }
 
     companion object {
         private val TAG = "MainFragment"
-
-        private val BACKGROUND_UPDATE_DELAY = 300
     }
 }

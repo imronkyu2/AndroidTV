@@ -1,4 +1,4 @@
-package com.example.androidtv.ui.view
+package com.example.androidtv.ui.view.home
 
 import android.graphics.drawable.Drawable
 import android.util.Log

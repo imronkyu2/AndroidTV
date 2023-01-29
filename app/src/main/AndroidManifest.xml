@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidTV">
         <activity
-            android:name=".ui.view.MainActivity"
+            android:name=".ui.view.home.MainActivity"
             android:banner="@drawable/app_icon_your_company"
             android:exported="true"
             android:icon="@drawable/app_icon_your_company"
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.view.DetailsActivity"
+            android:name=".ui.view.detail.DetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.view.PlaybackActivity"

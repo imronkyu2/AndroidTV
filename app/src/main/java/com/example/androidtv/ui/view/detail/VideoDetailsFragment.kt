@@ -1,4 +1,4 @@
-package com.example.androidtv.ui.view
+package com.example.androidtv.ui.view.detail
 
 import android.content.Context
 import android.content.Intent
@@ -17,6 +17,8 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.androidtv.R
 import com.example.androidtv.data.model.CouponModel
+import com.example.androidtv.ui.view.PlaybackActivity
+import com.example.androidtv.ui.view.home.MainActivity
 import com.google.gson.Gson
 
 /**
@@ -94,30 +96,13 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             })
 
         val actionAdapter = ArrayObjectAdapter()
-
         actionAdapter.add(
             Action(
                 ACTION_WATCH_TRAILER,
-                resources.getString(R.string.watch_trailer_1),
-                resources.getString(R.string.watch_trailer_2)
-            )
-        )
-        actionAdapter.add(
-            Action(
-                ACTION_RENT,
-                resources.getString(R.string.rent_1),
-                resources.getString(R.string.rent_2)
-            )
-        )
-        actionAdapter.add(
-            Action(
-                ACTION_BUY,
-                resources.getString(R.string.buy_1),
-                resources.getString(R.string.buy_2)
+                resources.getString(R.string.redeem)
             )
         )
         row.actionsAdapter = actionAdapter
-
         mAdapter.add(row)
     }
 
@@ -125,7 +110,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
         // Set detail background.
         val detailsPresenter = FullWidthDetailsOverviewRowPresenter(DetailsDescriptionPresenter())
         detailsPresenter.backgroundColor =
-            ContextCompat.getColor(requireActivity(), R.color.selected_background)
+            ContextCompat.getColor(requireActivity(), R.color.transparant)
 
         // Hook up transition element.
         val sharedElementHelper = FullWidthDetailsOverviewSharedElementHelper()

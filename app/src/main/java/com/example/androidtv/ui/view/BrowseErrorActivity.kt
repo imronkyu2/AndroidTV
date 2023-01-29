@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.androidtv.R
+import com.example.androidtv.ui.view.home.MainFragment
 
 /**
  * BrowseErrorActivity shows how to use ErrorFragment.

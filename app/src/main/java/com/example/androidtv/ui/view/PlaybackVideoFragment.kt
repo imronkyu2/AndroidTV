@@ -6,6 +6,7 @@ import androidx.leanback.media.MediaPlayerAdapter
 import androidx.leanback.media.PlaybackTransportControlGlue
 import androidx.leanback.widget.PlaybackControlsRow
 import com.example.androidtv.data.model.CouponModel
+import com.example.androidtv.ui.view.detail.DetailsActivity
 
 /** Handles video playback with media controls. */
 class PlaybackVideoFragment : VideoSupportFragment() {
